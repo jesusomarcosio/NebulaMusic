@@ -49,7 +49,15 @@ public class MainController {
     public String autenticacion(
             @RequestParam("correo") String correo,
             @RequestParam("contrasenia") String contrasenia){
+        if (usuarioService.autenticar(correo, contrasenia)){
+            return "redirect:/index";
+        }
+        return "redirect:/error.html";
+    }
 
+    @GetMapping("/cerrar-sesion")
+    public String cerrarSesion(){
+        return "redirect:/iniciar-sesion?logout";
     }
 
 }
